@@ -29,7 +29,7 @@ function M.get_debug_adapter()
     exec_path[#exec_path+1] = "netcoredbg.exe"
   end
   
-  local path = utils.join_paths(package:get_install_path(), "netcoredbg")
+  local path = utils.join_paths(package:get_install_path(), exec_path)
 
   dap.adapters.coreclr = {
     type = "executable",
