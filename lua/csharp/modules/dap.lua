@@ -23,13 +23,12 @@ function M.get_debug_adapter()
     package:install()
   end
 
-  local exec_path = {package:get_install_path(), "netcoredbg"}
+  local path = utils.join_paths(package:get_install_path(), "netcoredbg")
+
   -- Netcoredbg puts the executable in a different spot
   if vim.loop.os_uname().sysname == "Windows_NT" then
-    exec_path[#exec_path+1] = "netcoredbg.exe"
+    path = utils.join_paths(path, "netcoredbg.exe")
   end
-
-  local path = utils.join_paths(table.unpack(exec_path))
 
   dap.adapters.coreclr = {
     type = "executable",
